@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Carros</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lista de Carros</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Data de Criação</th>
+            </tr>
+        </thead>
+        <tbody id="car-table-body"></tbody>
+    </table>
+    
+    <div id="pagination">
+        <button id="prevPage">Anterior</button>
+        <span id="currentPage">1</span>
+        <button id="nextPage">Próximo</button>
+    </div>
+    
+    <h2>Adicionar Novo Carro</h2>
+    <form id="car-form">
+        <input type="text" id="brand" placeholder="Marca" required>
+        <input type="text" id="model" placeholder="Modelo" required>
+        <input type="text" id="year" placeholder="Ano" required>
+        <button type="submit">Adicionar</button>
+    </form>
+    
+    <script src="script.js"></script>
+</body>
+</html>
