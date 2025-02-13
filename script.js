@@ -35,7 +35,6 @@ function updateTable(cars) {
             <td>${car.id}</td>
             <td>${car.brand}</td>
             <td>${car.model}</td>
-            <td>${car.year}</td>
             <td>${new Date(car.createdAt).toLocaleDateString("pt-BR")}</td>
         `;
         tableBody.appendChild(row);
