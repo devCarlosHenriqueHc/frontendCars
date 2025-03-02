@@ -18,7 +18,7 @@ async function fetchCars() {
         }
 
         updateTable(data.content);
-        document.getElementById("currentPage").textContent = currentPage + 1;
+        document.getElementById("currentPage").value = currentPage + 1;
     } catch (error) {
         console.error("Erro ao buscar carros:", error);
     }
@@ -35,7 +35,7 @@ function updateTable(cars) {
             <td>${car.id}</td>
             <td>${car.brand}</td>
             <td>${car.model}</td>
-            <td>${new Date(car.createdAt).toLocaleDateString("pt-BR")}</td>
+            <td>${car.modelYear}</td>
         `;
         tableBody.appendChild(row);
     });
@@ -47,14 +47,14 @@ async function addCar(event) {
 
     const brand = document.getElementById("brand").value.trim();
     const model = document.getElementById("model").value.trim();
-    const year = document.getElementById("year").value.trim();
+    const modelYear = document.getElementById("modelYear").value.trim();
 
-    if (!brand || !model || !year) {
+    if (!brand || !model || !modelYear) {
         alert("Preencha todos os campos!");
         return;
     }
 
-    const carData = { brand, model, year };
+    const carData = { brand, model, modelYear };
 
     try {
         const response = await fetch(apiUrl, {
@@ -74,6 +74,17 @@ async function addCar(event) {
         console.error("Erro ao adicionar carro:", error);
     }
 }
+
+// Atualiza a página ao inserir um número no input
+document.getElementById("currentPage").addEventListener("change", (event) => {
+    const pageNumber = parseInt(event.target.value);
+    if (!isNaN(pageNumber) && pageNumber > 0) {
+        currentPage = pageNumber - 1;
+        fetchCars();
+    } else {
+        event.target.value = currentPage + 1;
+    }
+});
 
 // Paginação
 document.getElementById("nextPage").addEventListener("click", () => {
